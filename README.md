@@ -6,4 +6,4 @@
 - HTML-коды
 - CSS-коды
 - Подключение Bootstrap
-  ![Альтернативный текст]()
+  ![Альтернативный текст](https://github.com/Daria-Dalin/Project/blob/master/images/python.png)

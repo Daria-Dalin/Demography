@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+     <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+<!-- внутренний набор стилей-->
+    <style>
+        @import url(http://site.ru/style.css);
+        @media
+    </style>
+</head>
+<body bgcolor="#ffff00" link="red" vlink="green" alink="blue">
+
+<h2>Изменяемый заголовок</h2>
+<div class="esp">ESP</div>
+<a href="#formula">формула</a>
+<a name="top"></a>
+<p align="center"><a href="#bottom">Вниз</a></p>
+<h1 id="header">Заголовок</h1>
+<!--Теги логической разметки-->
+<em>А
+    </em><br> <!--emphasis - акцент. br-break-->
+<strong>Сильный</strong><br>
+<code>a = 3;</code><br> <!--моноширинный шрифт для машины-->
+<!--Физическая разметка - машина не обратит внимания-->
+<i>Курсив italic</i><br>
+<b>полужирный</b><br>
+<i><b>полужирный-наклонный</b></i><br> <!--принцип матрешки-->
+<u>Подчеркнутый Underline</u><br>
+<s>Зачеркнутый strike out</s>
+<sub>Нижний индекс</sub>
+<sup>Верхний индекс</sup><br>
+<p>2 <sup>8</sup> = 256</p>
+<p>H<sub>2</sub>O</p>
+<!--специальные символы html-->
+<p>Слово&nbsp;&nbsp;&nbsp; слово</p><!--символ неразрывный пробел-->
+<p>грач &ndash; птица</p>
+<p>грач &mdash; птица</p>
+<p>24&deg;C</p>
+<p>5 &lt; 8</p>
+<p>5 &gt; 3</p>
+<code>
+<pre>
+    for i in range(10)
+        for j in range(10)
+            print(i, j)
+</pre>
+</code>
+<p>&lt;p&gt; &ndash; тег параграфа</p>
+<font size="7" color="red" face="Arial">шрифт</font>
+<hr width="75%" noshade color="red" title="на меня навели мышь" size="10">
+
+<p align="center">
+    Это текст статьи<br>
+    <img src="images/python.png"
+         alt="Лого Python" width="200" height="200">
+    <br>А это справа
+</p>
+
+<p>Несколько причин булетами</p>
+<ul>
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ul>
+
+<ol start="4">
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ol>
+<ol type="a">
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ol>
+<ol type="a" start="4">
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ol>
+<ol type="a" start="27">
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ol>
+<ol>
+    <li>Пункт 1</li>
+    <ol type="a">
+        <li>Пункт 2</li>
+        <li>Пункт 3</li>
+        <li>Пункт 4</li>
+    </ol>
+    <li>Пункт 5</li>
+</ol>
+<ol reversed>
+    <li>Причина 1</li>
+    <li>Причина 2</li>
+    <li>Причина 3</li>
+    <li>Причина 4</li>
+</ol>
+<ul>
+    <li>Пункт 1</li>
+    <ul type="a">
+        <li>Пункт 2</li>
+        <li>Пункт 3</li>
+        <li>Пункт 4</li>
+        <ul>
+            <li>Пункт 5</li>
+            <ul>
+                <li>Пункт 6</li>
+            </ul>
+        </ul>
+    </ul>
+    <li>Пункт 7</li>
+</ul>
+<!--Термин определений
+
+dl - description of list element-->
+<!--dt - definition of term element-->
+<!--dd description element--->
+
+<dl>
+    <dt><b>HTML</b></dt>
+    <dd>От англ. <i>Hyper Text MarkUp Language</i> &mdash; </mdash> язык гипертекстовой разметки</dd>
+    <dt><b>HTML</b></dt>
+    <dd>От англ. <i>Hyper Text MarkUp Language</i> &mdash; язык гипертекстовой разметки</dd>
+    <dt><b>FAQ</b></dt>
+    <dd>От англ. <i>Frequently Asked Questions</i> &mdash; ЧАВО</dd>
+</dl>
+<ol type="A">
+    <li>Первый пункт</li>
+    <ol type="a">
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+    </ol>
+    <li>Второй пункт</li>
+    <ol type="i">
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+    </ol>
+    <li>Третий пункт</li>
+
+</ol>
+
+<dl>
+    <dt>FTP</dt>
+    <dd>От англ <b>File Transfer Protocol</b> &mdash; протокол передачи файлов по сети...</dd>
+    <dt>TCP/IP</dt>
+    <dd>От англ. <b>Transfer Control Protocol / Internet Protocol</b> &mdash; сетевая модель передачи данных...</mdash>
+    </dd>
+</dl>
+
+<!--
+> вложенность
++ последовательность
+* сколько раз повторить элемент (тег)
+lorem
+-->
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam asperiores consectetur, dolores eos error
+    facilis id incidunt nobis omnis porro praesentium provident quas ratione reiciendis reprehenderit suscipit velit.
+    Ab?</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam at consequuntur dolorum, earum exercitationem in,
+    incidunt iste laborum minima nam nostrum obcaecati perspiciatis provident quaerat recusandae. Architecto
+    necessitatibus quaerat tempora.</p>
+<p></p><img src="" alt="">
+<p><img src="" alt=""></p>
+<ol>
+    <li>Пункт 1</li>
+    <li>Пункт 2</li>
+    <li>Пункт 3</li>
+</ol>
+<a href="https://ya.ru" target="_blank" title="Перейти на Яндекс">Яндекс - найдется все</a>
+
+<!--Таблица
+tr - table row
+td - table data ячейка или столбаец
+th - table headers - для шапки таблицы
+-->
+<table border="1" cellspacing="0" cellpadding="5" width="50%">
+    <tr align="center">
+        <td>Строка 1 <br> Столбец 1</td>
+        <td align="right">Строка 1 <br> Столбец 2</td>
+        <td>Строка 1 <br> Столбец 3</td>
+    </tr>
+ <tr>
+        <td>Строка 1 <br> Столбец 1</td>
+        <td>&nbsp;</td>
+        <td>Строка 1 <br> Столбец 2</td>
+    </tr>
+
+</table>
+
+<p><br></p>
+<table cellpadding="5" cellspacing="0" border="5" width="50%">
+      <tr>
+        <th colspan="2">data</th>
+
+    </tr>
+    <tr>
+        <td rowspan="2">data</td>
+        <td>data</td>
+    </tr>
+  <tr>
+        <td>data</td>
+    </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" cellpadding="5" width="100%">Таблица
+    <tr>
+        <th colspan="2">Заголовок для 2 столбцов</th>
+    </tr>
+    <tr>
+        <td rowspan="2" valign="middle">Второй столбец<br> Он общий для 2 и 3 строк</td>
+        <td>Строка 2<br>Столбец 1</td>
+    </tr>
+    <tr>
+        <td>Строка 3<br>Столбец1</td>
+    </tr>
+</table>
+
+<table bgcolor="images/python.png" border="0" align="center">
+    <tr align="center">
+        <td>N</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td size="+2">&sum;</td>
+        <td>X<sub>i</sub></td>
+     </tr>
+    <tr>
+        <td>i=0</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<br>
+<p id="formula">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consectetur dicta distinctio facere fugit harum
+    inventore ipsa libero nostrum. Alias architecto atque autem consequatur culpa delectus doloremque ducimus earum eius
+    eos eum fuga fugiat harum hic impedit inventore itaque laudantium maiores, non nulla odit perferendis placeat
+    possimus provident, quaerat quia quo quod reiciendis saepe sed sequi sint tempora temporibus tenetur ullam unde
+    voluptates. Ad asperiores cupiditate, dolores eos ipsam libero repellendus suscipit tenetur voluptate. Ab,
+    asperiores aspernatur corporis culpa cum dignissimos doloremque ducimus eos ex excepturi explicabo harum laudantium
+    magnam magni maiores neque obcaecati odio officiis perferendis perspiciatis quaerat quam ratione repellendus sed
+    veritatis vero voluptatum. Asperiores at cum cumque deserunt eius hic iusto nemo, nesciunt pariatur provident rem
+    repudiandae saepe tempore! Asperiores eius illo laudantium libero optio quisquam ratione, veniam? Adipisci aliquam
+    aperiam beatae commodi consequatur, cupiditate deleniti distinctio dolor doloremque iusto laboriosam laborum natus
+    necessitatibus numquam porro quam quia quis quod ratione repudiandae sunt vitae voluptas! Blanditiis eaque eligendi
+    fuga maiores maxime perferendis, perspiciatis? Accusamus ad adipisci aliquam aspernatur aut, autem culpa dolor eos
+    expedita illo incidunt, nam officia optio pariatur quo quos voluptatibus. Ea maiores natus neque nihil odit pariatur
+    porro quidem quo, reprehenderit sint. Blanditiis dolore dolorem dolores earum enim est eveniet, fugit iusto magnam
+    nostrum officia, possimus, provident quam reiciendis repudiandae sint tenetur velit. Adipisci aliquid asperiores
+    aspernatur atque earum, fugit illum incidunt ipsum, iusto mollitia nisi perspiciatis quibusdam ut! Animi atque
+    blanditiis distinctio excepturi facilis id iste neque odio perspiciatis qui suscipit, ut, veritatis, vitae. Dolore
+    eveniet iusto obcaecati porro recusandae similique totam? Atque beatae consectetur earum eligendi ipsam, laborum
+    minus perferendis. Accusamus adipisci architecto aspernatur assumenda at dignissimos ea eaque eligendi in ipsum iste
+    iure maiores minus, modi nemo neque numquam odit perspiciatis porro quam qui quis quisquam quo tenetur voluptas.
+    Illum, porro.</p>
+
+<p align="center">
+
+    <a href="about.html">О нас</a>
+<img src="images/python.png" alt="">
+</p>
+
+<br><br><br>
+<div style="text-align: center; ">
+<img  src="images/python.png" alt="">
+</div>
+<br><br><br>
+<div align="center" style="font-size: 40px;">Контейнер
+    <div style="font-size: .75em;">Родитель
+        <div style="font-size: .75em">Потомок</div>
+    </div>
+</div>
+<code>
+    <pre>for i in range(10)
+    print(i)></pre>
+</code>
+<h3></h3>
+<p></p>
+<p></p>
+<h3>Соседский селектор </h3>
+<p>Это сосед аннотация: в этой главе</p>
+<p class="ev">Пишите нам: <a class="mail" href="mailto:info@mmail.ru">info@mail.ru</a></p>
+
+<div><span>Это пример наследования</span></div>
+
+<form action=""><input type="text">
+    <input type="submit"></form>
+
+<br><br><br>
+<p align="center"><a href="#top">Наверх</a></p>
+<a name="bottom"></a>
+</body>
+</html>

@@ -1,12 +1,93 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <title>Контакты</title>
-    <link type="text/css" rel="stylesheet" href="css/reset.css">
-    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Гид по Петербургу</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link type="image/png" sizes="32x32" rel="icon" href="./images/favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
 </head>
 <body>
-ул. Ленина,
+
+<!--Главный контейнер-->
+<div class="container">
+    <!--Шапка-->
+    <header>
+
+        <nav class="navbar navbar-expand-lg bg-info-subtle">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Медный всадник"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Переключатель навигации">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">Обо мне</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active"  aria-current="page" href="contacts.html">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--Шапка end-->
+<!--    Хлебные крошки-->
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+  </ol>
+</nav>
+<!--    Хлебные крошки end-->
+<br>
+    <h2> Cвяжитесь с нами</h2>
+<!-- форма обратной связи-->
+    <br>
+    <div class="row">
+        <div class="col-10 col-centered bg-light p-3 rounded">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Адрес электронной почты</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Проверить меня</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </div>
+    <!-- форма обратной связи end-->
+<!--Подвал-->
+<footer class="bg-body-tertiary text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Влюбляем в Петербург с 2019 года
+    </div>
+    <!-- Copyright -->
+    <br>
+</footer>
+<!--Подвал end-->
+<!--Главный контейнер end-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

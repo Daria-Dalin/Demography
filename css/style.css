@@ -5,10 +5,20 @@ article,
 aside,
 footer,
 main {
-  display: block;
+    display: block;
 }
 
-.col-centered {
-float: none;
-margin: 0 auto;
+.col-centered{
+   float: none;
+   margin: 0 auto;
+}
+
+p {
+   margin-top: 20px;
+}
+
+p::first-letter {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: brown;
 }

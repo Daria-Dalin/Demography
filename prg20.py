@@ -1,6 +1,6 @@
 # pass - Заглушка
 for i in range(5):
-    pass  # TODO
+    pass
     print('Привет', i)
 
 for _ in range(5):

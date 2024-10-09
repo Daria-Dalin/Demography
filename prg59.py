@@ -8,3 +8,4 @@ try:
     print(f'вы ввели: {text}')
 except AssertionError:
     print(f'нет. ваш текст корочеб чем {length} Заготовка')
+

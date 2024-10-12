@@ -15,8 +15,8 @@ draw.line((0, 100, 200, 100), fill='brown', width=3)
 draw.rectangle((0, 0, 50, 50), outline=(0, 250, 250), width=5)
 # напишем текст
 text = 'окно'
-font = ImageFont.truetype('arial.ttf', size=18)
-draw.text((80, 90), text, font=font)
+
+draw.text((80, 90), text, )
 # рисуем полигон(треугольник)
 draw.polygon(
     xy=(

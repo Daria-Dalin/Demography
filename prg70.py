@@ -1,4 +1,5 @@
 # обработчик изображений
+import tkinter
 from re import fullmatch
 from tkinter import *
 from tkinter import filedialog  # файловый диалог
@@ -11,7 +12,7 @@ class App:  # класс нашего приложения
         self.root.title('Обработка изображений')
         self.root.geometry('800x600')
         self.root.resizable(False, False)  # фиксируем габариты
-        self.root.iconphoto(False, PhotoImage(file='icon.png'))
+        self.root.iconphoto(False, PhotoImage(file='images/logo.png'))
         self.label = Label(text='Работаем с картинками',
                            background='#ffff00',
                            foreground='red',
@@ -19,34 +20,67 @@ class App:  # класс нашего приложения
         self.label.pack()  # размещение надписи
         self.canvas = Canvas(bg='white', width=600, height=400)
         self.canvas.pack(anchor=CENTER, pady=20)
+        photo = PhotoImage(file='logo.png')
         # Кнопка загрузки
-        self.btn = Button(text='Загрузить', command=self.load)
+        self.btn = Button(text='Загрузить',
+                          bg='yellow', fg='purple', activebackground='blue',
+                          activeforeground='black',
+                          image=photo, compound=BOTTOM,
+                          borderwidth=3, relief="raised",
+                          command=self.load)
         self.btn.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка размытия
-        self.blur = Button(text='Размыть', command=self.blur)
+        self.blur = Button(text='Размыть', bg='yellow', fg='purple',
+                           borderwidth=3, relief="ridge",
+                           image=photo, compound=BOTTOM,
+                           activebackground='blue', activeforeground='black',
+                           command=self.blur)
         self.blur.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка резкости
-        self.shrp = Button(text='Резкость', command=self.sharp)
+
+        self.shrp = Button(text='Резкость', bg='yellow', fg='purple',
+                           borderwidth=3, relief="solid",
+                           image=photo, compound = BOTTOM,
+                           activebackground='blue', activeforeground='black',
+                           command=self.sharp)
         self.shrp.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка отражения по горизонтали
-        self.flp = Button(text='Отразить', command=self.flip)
+        self.flp = Button(text='Отразить', bg='yellow', fg='purple',
+                          borderwidth=3, relief="groove",
+                          image=photo, compound=BOTTOM,
+                          activebackground='blue', activeforeground='black',
+                          command=self.flip)
         self.flp.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка вызова оригинал
-        self.orig = Button(text='Оригинал', command=self.back)
+        self.orig = Button(text='Оригинал', bg='yellow', fg='purple',
+                           borderwidth=3, relief="ridge",
+                           image=photo, compound=BOTTOM,
+                           activebackground='blue', activeforeground='black',
+                           command=self.back)
         self.orig.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка очистки
-        self.rect_btn = Button(text='Очистить', command=self.make_rect)
+        self.rect_btn = Button(text='Очистить', bg='yellow', fg='purple',
+                               borderwidth=3, relief="solid",
+                               image=photo, compound=BOTTOM,
+                               activebackground='blue', activeforeground='black',
+                               command=self.make_rect)
         self.rect_btn.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         # кнопка Сохранить
-        self.save_btn = Button(text='Сохранить', command=lambda: self.load_save('save'))
+        self.save_btn = Button(text='Сохранить', bg='yellow', fg='purple',
+                               borderwidth=3, relief="groove",
+                               image=photo, compound=BOTTOM,
+                               activebackground='blue', activeforeground='black',
+                               command=lambda: self.load_save('save'))
         self.save_btn.pack(side=LEFT, anchor=N, padx=25, fill=X, expand=True)
         self.save_btn['state'] = DISABLED
         # self.btn.bind('<ButtonPress-1>', self.load)
         self.left, self.top = 0, 0  # точки привязки к холсту
         self.ext = ''  # расширение файла картинки
         self.image = None
+
         self.empty = Image.new('RGB', (600, 400), (255, 255, 255))  # пустышка
         self.root.mainloop()
+
 
     def load(self):
         try:

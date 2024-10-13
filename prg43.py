@@ -31,7 +31,7 @@ for key in d.keys():
     print(f'Ключ: {key}, Значение: {d[key]}')
 
 for key, value in d.items():
-    if value == 'Истина'
+    if value == 'Истина':
         print(f'Для Истина ключ - {key}')
     print(f'Ключ: {key}, Значение: {d[key]}')
 

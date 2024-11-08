@@ -12,7 +12,7 @@ class App:  # класс нашего приложения
         self.root.title('Обработка изображений')
         self.root.geometry('800x600')
         self.root.resizable(False, False)  # фиксируем габариты
-        self.root.iconphoto(False, PhotoImage(file='images/logo.png'))
+        self.root.iconphoto(False, PhotoImage(file='logo.png'))
         self.label = Label(text='Работаем с картинками',
                            background='#ffff00',
                            foreground='red',

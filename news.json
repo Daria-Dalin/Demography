@@ -1,0 +1,18 @@
+
+
+{
+  "news" : [
+    {
+      "title": "солнечно",
+      "content": "good day"
+    },
+    {
+      "title": "foggy",
+      "content": "no beach"
+    },
+    {
+      "title": "rain",
+      "content": "go home"
+    }
+  ]
+}

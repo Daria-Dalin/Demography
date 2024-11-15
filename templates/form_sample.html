@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if not form %}
+<h1>форма для регистрации</h1>
+<form class="form-control" method="post">
+    <input class="form-control" type="email" name="email" id="email" placeholder="введите email">
+    <input class="form-control" type="password" name="password" id="password">
+    <label for="profSelect">Ваша профессия</label>
+    <select class="form-control" name="profession" id="profSelect">
+        <option>Инженер</option>
+        <option>Конструктор</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% else %}
+<h1>Вот, что вы отправили: </h1>
+<p><b>Ваш email</b>: {{ form['email'] }}</p>
+<p><b>Пароль</b>: {{ form['password'] }}</p>
+<p><b>Ваша профессия</b>: {{ form['profession'] }}</p>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+<!--Подвал-->
+<footer class="bg-body-tertiary text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Влюбляем в Петербург с 2019 года
+    </div>
+    <!-- Copyright -->
+    <br>
+</footer>
+<!--Подвал end-->
+{% endblock %}

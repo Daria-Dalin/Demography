@@ -1,8 +1,19 @@
-from flask import Flask, url_for, request, render_template
-import json
+from flask import Flask, url_for, request, render_template, redirect
+from werkzeug.utils import secure_filename
+
+from loginform import LoginForm
+import json, os
+
+current_directory = os.path.dirname(__file__) #путь к корню сервера
+UPLOAD_FOLDER = f'{current_directory}/static/uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'too_short_key'
+app.config['Upload_FOLDER'] = UPLOAD_FOLDER
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 @app.route('/index')
@@ -13,11 +24,11 @@ def index():
     return render_template('index.html', **param)
 
 
-   # """
-   # <a href="/index">Главная</a> | <a href="/contacts">Контакты</a>
-    # | <a href="/img/1">Картинка 1</a>
-    # | <a href="/img/2">Картинка 2</a>
-   # """
+# """
+# <a href="/index">Главная</a> | <a href="/contacts">Контакты</a>
+# | <a href="/img/1">Картинка 1</a>
+# | <a href="/img/2">Картинка 2</a>
+# """
 
 @app.route('/news')
 def news():
@@ -26,12 +37,31 @@ def news():
     print(news_list)
     return render_template('news.html', news=news_list, title='news')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('login.html', title='Авторизация', form=form)
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'GET':
+        return render_template('upload.html', title='Выбор файла', form=None)
+    elif request.method == 'POST':
+        filename = secure_filename()
+
+@app.route('/success')
+def success():
+    return 'Успех'
+
 @app.route('/pets')
 def pets():
     with open("pets.json", "rt", encoding="utf-8") as f:
         pets_list = json.load(f)
     print(pets_list)
     return render_template('pets.html', pets=pets_list, title='pets')
+
 
 @app.route('/queue')
 def queue():
@@ -53,6 +83,7 @@ def countdown():
     cl.append('finish')
     return '<br>'.join(cl)
 
+
 # 1. требуемый пункт меню
 # 2. создать .html-файл для расширения шаблона
 # 3. Отрендерить, осздав соответсвующий декоратор
@@ -60,7 +91,7 @@ def countdown():
 def about():
     params = {}
     params['title'] = 'О нас'
-    params['text']= 'Мы перспективная и динамично развивающаяся компания...'
+    params['text'] = 'Мы перспективная и динамично развивающаяся компания...'
     return render_template('about.html', **params)
 
 
@@ -111,7 +142,9 @@ def two_params_func(username, number):
     <h1>Пользователь {username}</h1>
     <h2>номер в системе {param}</h2>
     """
-#Методы
+
+
+# Методы
 # GET - запрашивает информацию с сервера не меняя его состояния
 # POST - отправляет даннные на сервер для обработки
 # PUT - заменяет текущие данные на сервере данными запроса
@@ -121,75 +154,10 @@ def two_params_func(username, number):
 @app.route('/form_sample', methods=['POST', 'GET'])
 def form_sample():
     if request.method == 'GET':
-        return """
-        <!DOCTYPE html>
-        <html lang="ru">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-                integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-            <title>Заполните форму</title>
-            <link rel="stylesheet" href="css/style.css">
-            <link type="image/png" sizes="32x32" rel="icon" href="./images/favicon.png">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
-        </head>
-        <body>
-        <!--Главный контейнер-->
-        <div class="container">
-            <h1>форма для регистрации</h1>
-            <form class="form-control" method="post">
-                <input class="form-control" type="email" name="email" id="email" placeholder="введите email">
-                <input class="form-control" type="password" name="password" id="password">
-                <label for="profSelect">Ваша профессия</label>
-                <select class="form-control" name="profession" id="profSelect">
-                    <option>Инженер</option>
-                    <option>Конструктор</option>
-                </select>
-                <button type="submit" class="btn btn-primary">Отправить</button>
-            </form>
-        </div>
-        <!--Главный контейнер end-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-                crossorigin="anonymous"></script>
-        </body>
-        </html>     
-        """
-    #elif request.method == 'POST':
-      #  print(request.form['email'])
-      #  print(request.form['password'])
-       # print(request.form['profession'])
-      #  return 'Форма успешно отправлена'
+        return render_template('form_sample.html', title='Заполните форму', form='None')
+
     elif request.method == 'POST':
-        return f"""
-        <!DOCTYPE html>
-        <html lang="ru">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-                  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-            <title>Заполните форму</title>
-            <link rel="stylesheet" href="css/style.css">
-            <link type="image/png" sizes="32x32" rel="icon" href="./images/favicon.png">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
-        </head>
-        <body>
-        <!--Главный контейнер-->
-        <div class="container">
-            <h1>Вот что вы отправили</h1>
-           <p><b>Ваш email: </b>{request.form['email']}</p>
-            <p><b>Ваш пароль: </b>{request.form['password']}</p>
-            <p><b>Ваша профессия: </b>{request.form['profession']}</p>
-        </div>
-        <!--Главный контейнер end-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-                crossorigin="anonymous"></script>
-        </body>
-        </html>
-        """
+        return render_template('form_sample.html', title='Ваши данные', form=request.form)
 
 if __name__ == '__main__':
     app.run(port=5000, host='127.0.0.1')

@@ -3,6 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
 import schedule
+import time
 import os
 
 
@@ -40,20 +41,3 @@ def send_mail(email, subject, text):
     server.quit()
     return True
 
-message = """
-это проверка отправки почты моим скриптом"""
-
-mail_list = ['a@b.ru', 'b@c.ru']
-
-count=0 #глобальный счетчик писем
-
-def mail_task():
-    global count
-    send_mail(mail_list[count], 'проверка', message)
-    count += 1
-
-while count < len(mail_list):
-    schedule.every(2).seconds.do(mail_task)
-    time.sleep(1) # если нужна допзадержка
-
-print('Рассылка завершена')

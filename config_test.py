@@ -1,13 +1,13 @@
 import configparser
 
-config = configparser.ConfigParser() #объект для обращения к ini
+config = configparser.ConfigParser()  # объект для обращения к ini
 
 config.read('settings.ini')
 
 print(config['Telegram']['username'])
 print(config['Telegram']['password'])
 
-#создаем новую секцию
+# создаем новую секцию
 config.add_section('VK')
 config.set('VK', 'vkuser', 'vk_pass')
 

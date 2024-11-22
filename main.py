@@ -64,7 +64,9 @@ def weather():
                                    'units': 'metric',
                                    'APPID': key})
         data = res.json()
-
+        if len(data['list']) == 0:
+            flash('Город неверно')
+            return redirect(request.url)
         temp = data['list'][0]['main']
         params = {'temper': temp['temp'],
                   'feel': temp['feels_like'],
@@ -83,13 +85,47 @@ def login():
         return redirect('/success')
     return render_template('login.html', title='Авторизация', form=form)
 
+
 @app.route('/contacts', methods=['GET', 'POST'])
 def contacts():
     form = MailForm()
+    params = {}
     if form.validate_on_submit():
-        return redirect('/success')
+        name = form.username.data
+        params['name'] = name
+        phone = form.phone.data
+        params['phone'] = phone
+        email = form.email.data
+        params['email'] = email
+        message = form.message.data
+        params['message'] = message
+        params['page'] = request.url
+
+        text = f"""
+        Пользователь {name} оставил вам сообщение:
+        {message}
+        Его телефон {phone}
+        {email}
+        Страница: {request.url}
+        """
+        text_to_user = f"""
+       Уважаемый (-ая) {name}!
+       Ваши данные:
+       Телефон: {phone}
+       E-mail: {email}
+       успешно получены.
+       Ваше сообщение:
+       {message}
+       принято к рассмотрению.
+       Отправлено со страницы: {request.url}
+        """
+        # send_mail(email, 'Ваши данные на сайте', text_to_user)
+        # send_mail('мой email', 'Запрос с сайта', text)
+        return render_template('/meilresult.html',
+                               title='Ваши данные', params=params)
     return render_template('contacts.html',
                            title='Наши контакты', form=form)
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():

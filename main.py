@@ -6,6 +6,10 @@ from loginform import LoginForm
 from mailform import MailForm
 import json, os
 import configparser
+from data import db_session
+from data.users import User
+from data.news import News
+
 import requests
 
 current_directory = os.path.dirname(__file__)  # путь к корню сервера
@@ -18,6 +22,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 config = configparser.ConfigParser()
 
+#ORM - Object Relational Mappin - Объектно-реляционное отображение
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -254,4 +259,48 @@ def form_sample():
 
 
 if __name__ == '__main__':
-    app.run(port=5000, host='127.0.0.1')
+    db_session.global_init('db/blogs.db')
+    db_sess = db_session.create_session()
+
+
+    #news create
+    #news = News(title="Первая новость", content="Первая новость",
+      #          user_id=1, is_private=False)
+    #db_sess.add(news)
+    #db_sess.commit()
+
+    #read news
+    news = db_sess.query(News).filter(News.user_id == 1).first()
+    print(news.title)
+
+    #CRUD#create
+    #user = User()
+    #user.name = 'User3'
+    #user.about = 'Третий пользователь нашей БД'
+    #user.email = 'email3@email.ru'
+   #db_sess = db_session.create_session()
+    #db_sess.add(user)
+    #db_sess.commit()
+    #read
+    #for user in db_sess.query(User).all():
+    #    print(user)
+    #print(user.name)
+    #result = db_sess.query(User).filter(User.id > 1, User.email.notlike("%1%"))
+    #for user in result:
+     #   print(print.name, user.email)
+    #update
+   # result = db_sess.query(User).filter(User.id == 2).first()
+    #result.name = 'User22'
+
+   # result.create_date = datetime.datetime.now()
+   # db_sess.commit()
+   # print(result.name)
+
+    #app.run(port=5000, host='127.0.0.1')
+    #delete
+    #db_sess.query(User).filter(User.id == 2).delete()
+    #db_sess.commit()
+
+   # user = db_sess.query(User).filter(User.id >1).delete()
+   # db_sess.commit()
+

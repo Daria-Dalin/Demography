@@ -1,29 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="text-center">Авторизация</h1>
+<h1> {{ title }} </h1>
 {% if message%}
 <div class="alert alert-danger" role="alert">{{ message }}</div>
 {% endif %}
-<br>
-<form action="" class="login-form" method="post" novalidate>
+<form action="" method="post">
     {{ form.hidden_tag() }}
     <p>
-        {{ form.email.label }}
-        {{ form.email(class="form-control") }}<br>
-        {% for error in form.email.errors%}
-    <div class="alert alert-danger" role="alert">{{ error }}</div>
+        {{ form.title.label }}<br>
+        {{ form.title(class="form-control") }}<br>
+        {% for error in form.title.errors %}
+    <p class="alert alert-danger" role="alert"> {{ error }}</p>
     {% endfor %}
     </p>
-
     <p>
-        {{ form.password.label }}
-        {{ form.password(class="form-control", type="password") }}<br>
-        {% for error in form.password.errors%}
-    <div class="alert alert-danger" role="alert">{{ error }}</div>
+        {{ form.content.label }}<br>
+        {{ form.content(class="form-control") }}<br>
+        {% for error in form.content.errors %}
+    <p class="alert alert-danger" role="alert"> {{ error }}</p>
     {% endfor %}
     </p>
-    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+    <p>{{ form.is_private() }} {{ form.is_private.label }}</p>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 </form>
 {% endblock %}

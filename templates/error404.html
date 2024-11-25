@@ -1,13 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Привет</h1>
-<p>{{ text }}</p>
-{% if current_user.is_authenticated %}
-<p>Lorem ipsum dolor expedita eos</p>
-{% else %}
-<p>Этот контент виден только зарегистрированным пользователям</p>
-{% endif %}
+<h1 class="text-center text-danger"> Страница не найдена </h1>
+<h2 class="text-center">{{ title }}</h2>
+<p>Страница не найдена. Начните с <a title="На главную" href="/">главной</a> и пользуйтесь меню</p>
 {% endblock %}
 
 {% block footer %}

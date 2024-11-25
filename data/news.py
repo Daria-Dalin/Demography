@@ -4,6 +4,7 @@ import sqlalchemy
 from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
+
 class News(SqlAlchemyBase):
     __tablename__ = 'news'
 

@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Привет</h1>
-<p>{{ text }}</p>
-{% if current_user.is_authenticated %}
-<p>Lorem ipsum dolor expedita eos</p>
-{% else %}
-<p>Этот контент виден только зарегистрированным пользователям</p>
-{% endif %}
+<h1 class="text-center text-danger"> Доступ закрыт </h1>
+<h2 class="text-center">{{ title }}</h2>
+<p>Для того, чтобы постетить данную страницу,
+    Вам необходимо <a href="/login">авторизоваться</a>.
+    Если вы не зарегистрированы,
+    пройдите процедуру <a href="/register">регистрации</a></p>
 {% endblock %}
 
 {% block footer %}

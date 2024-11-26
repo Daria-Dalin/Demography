@@ -1,7 +1,7 @@
 import datetime
 
 from flask import (Flask, url_for, request, render_template,
-                   redirect, flash, make_response)
+                   redirect, flash, make_response, session, abort, jsonify)
 from werkzeug.utils import secure_filename
 
 from forms.add_news import NewsForm
@@ -15,6 +15,8 @@ from data.news import News
 from forms.user import RegisterForm
 from flask_login import (LoginManager, login_user,
                          logout_user, login_required, current_user)
+from data.news import News
+import news_api
 
 import requests
 
@@ -45,7 +47,12 @@ def http_401_handler(error):
 
 @app.errorhandler(404)
 def http_404_handler(error):
-    return render_template('error404.html', title='Контент не найден')
+    return make_response(jsonify({'error': 'Новость не найдена'}), 404)
+   # return render_template('error404.html', title='Контент не найден')
+
+@app.errorhandler(400)
+def http_400_handler(_):
+    return make_response(jsonify({'error': 'Новость не найдена'}), 400)
 
 
 @app.route('/')
@@ -127,6 +134,12 @@ def weather():
         return render_template('weather.html',
                                title=f'Погода в {city}',
                                form=request.form, params=params)
+
+
+@app.route('/apitest')
+def api_test():
+    res = requests.get('http://127.0.0.1:5000/api/news').json()
+    return render_template('apitest.html', title='Тестируем наш первый API', news=res['news'])
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -353,8 +366,10 @@ def about():
     return render_template('about.html', **params)
 
 
-@app.route('/blog', methods=['GET', 'POST'])
+@app.route('/blog')
 def blog():
+    # if current_user.is_admin():
+    # else
     db_sess = db_session.create_session()
     news = db_sess.query(News).filter(News.is_private == False)
     return render_template('blog.html', title='Новости',
@@ -421,11 +436,13 @@ def form_sample():
 
 
 if __name__ == '__main__':
-    app.run(port=5000, host='127.0.0.1')
     db_session.global_init('db/blogs.db')
-    db_sess = db_session.create_session()
+    # прописываем blueprint
+    app.register_blueprint(news_api.blueprint)
+    app.run(port=5000, host='127.0.0.1')
 
     # news create
+    # db_sess = db_session.create_session()
 # news = News(title="Первая новость", content="Первая новость",
 #      user_id=1, is_private=False)
 # db_sess.add(news)

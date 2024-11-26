@@ -24,6 +24,7 @@ class User(SqlAlchemyBase, UserMixin):
     about = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String, index=True,
                               unique=True, nullable=True)
+    #level = sqlalchemy.Column(sqlalchemy.Integer, default=1)
     hashed_password = sqlalchemy.Column(sqlalchemy.String,
                                         nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
@@ -41,3 +42,12 @@ class User(SqlAlchemyBase, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
+
+def get_id(self):
+    return self.id
+
+#def is_admin(self):
+   # return self.level == ACCESS['admin']
+
+#def allowed(self, access_level):
+  #  return self.level >= access_level

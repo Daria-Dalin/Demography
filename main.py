@@ -20,6 +20,8 @@ import news_api
 
 import requests
 
+MS1 = 'http://127.0.0.1:5000/api/news'
+
 current_directory = os.path.dirname(__file__)  # путь к корню сервера
 UPLOAD_FOLDER = f'{current_directory}/static/uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -67,7 +69,7 @@ def index():
 @login_manager.user_loader
 def user_loader(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(User).get(user_id)
+    return db_sess.get(User, user_id)
 
 
 # """
@@ -138,7 +140,7 @@ def weather():
 
 @app.route('/apitest')
 def api_test():
-    res = requests.get('http://127.0.0.1:5000/api/news').json()
+    res = requests.get('MS1').json()
     return render_template('apitest.html', title='Тестируем наш первый API', news=res['news'])
 
 
@@ -156,7 +158,7 @@ def register():
         if db_sess.query(User).filter(User.email == form.email.data).first():
             return render_template('register.html', title='Регистрация',
                                    form=form,
-                                   message='Пользователь с Email {form.email.data} уже есть')
+                                   message=f'Пользователь с Email {form.email.data} уже есть')
         user = User(
             name=form.name.data,
             email=form.email.data,
@@ -361,8 +363,8 @@ def countdown():
 @app.route('/about')
 def about():
     params = {}
-    params['title'] = 'О нас'
-    params['text'] = 'Мы перспективная и динамично развивающаяся компания...'
+    params['title'] = 'Обо мне'
+    params['text'] = ''
     return render_template('about.html', **params)
 
 

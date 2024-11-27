@@ -15,13 +15,12 @@ def global_init(db_file):
         return
 
     if not db_file or not db_file.strip():
-        raise Exception("Необходимо указать файл БД при вызове функции global_init")
+        raise Exception("Необходимо указать файл БД при вызове global_init")
 
     conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False'
     print(f'Мы подключились к БД по адресу: {conn_str}')
 
     engine = sa.create_engine(conn_str, echo=False)
-
     __factory = orm.sessionmaker(bind=engine)
 
     from . import __all_models
@@ -31,4 +30,4 @@ def global_init(db_file):
 
 def create_session() -> Session:
     global __factory
-    return __factory
+    return __factory()
